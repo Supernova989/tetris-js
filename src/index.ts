@@ -1,10 +1,20 @@
 import { SETTINGS } from "./settings";
+import Scene from "./lib/Scene";
 
 
 const setup = () => {
-  console.log("hello");
-  const root = document.getElementById(SETTINGS.root_id);
-  root.innerText = "INIT DONE";
+  const scene = new Scene({
+    root_id: SETTINGS.root_id,
+    brick_size: SETTINGS.brick_size,
+    scene_width: SETTINGS.scene_width,
+    scene_height: SETTINGS.scene_height
+  });
+  
+  // // @ts-ignore
+  // const music: HTMLAudioElement = document.getElementById("music");
+  // if (music) {
+  //   music.play();
+  // }
 };
 
 window.addEventListener("load", setup);
