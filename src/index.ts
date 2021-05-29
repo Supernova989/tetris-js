@@ -9,12 +9,6 @@ const setup = () => {
     scene_width: SETTINGS.scene_width,
     scene_height: SETTINGS.scene_height
   });
-  
-  // // @ts-ignore
-  // const music: HTMLAudioElement = document.getElementById("music");
-  // if (music) {
-  //   music.play();
-  // }
 };
 
 window.addEventListener("load", setup);

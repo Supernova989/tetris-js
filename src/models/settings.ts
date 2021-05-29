@@ -1,4 +1,4 @@
-interface IAppSettings {
+export interface IAppSettings {
   root_id: string,
   brick_size: number,
   scene_width: number,

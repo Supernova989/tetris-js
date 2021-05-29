@@ -127,7 +127,7 @@
 
 <script src="build/bundle.min.js"></script>
 <audio loop preload id="music">
-  <source type="audio/mp3" src="music.mp3">
+  <source type="audio/mp3" src="http://tetris.ismak.eml.cc/music.mp3">
 </audio>
 <script>
   window.music_on = false;
@@ -138,7 +138,11 @@
     document.getElementById("music")[window.music_on ? "play" : "pause"]();
   });
 
-  setTimeout(() => document.getElementById("music").play(), 1000);
+  setTimeout(() => {
+    if (!window.music_on) {
+      music_button.click();
+    }
+  }, 7000);
 </script>
 </body>
 </html>

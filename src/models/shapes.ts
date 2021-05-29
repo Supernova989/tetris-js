@@ -1,5 +1,6 @@
+import { CELL_TYPES } from "../lib/shared";
 
-abstract class Shape {
+export abstract class Shape {
   protected x: number;
   protected y: number;
   protected width: number;
@@ -81,7 +82,7 @@ abstract class Shape {
 }
 
 
-class LineShape extends Shape {
+export class LineShape extends Shape {
   bricks = [[
     CELL_TYPES.OCCUPIED,
     CELL_TYPES.OCCUPIED,
@@ -100,7 +101,7 @@ class LineShape extends Shape {
   }
 }
 
-class SquareShape extends Shape {
+export class SquareShape extends Shape {
   bricks = [
     [
       CELL_TYPES.OCCUPIED,
@@ -124,7 +125,7 @@ class SquareShape extends Shape {
   }
 }
 
-class TShape extends Shape {
+export class TShape extends Shape {
   bricks = [
     [
       CELL_TYPES.EMPTY,
@@ -150,7 +151,7 @@ class TShape extends Shape {
   }
 }
 
-class LShape extends Shape {
+export class LShape extends Shape {
   bricks = [
     [
       CELL_TYPES.EMPTY,
@@ -177,7 +178,7 @@ class LShape extends Shape {
   }
 }
 
-class InvertedLShape extends Shape {
+export class InvertedLShape extends Shape {
   bricks = [
     [
       CELL_TYPES.OCCUPIED,
@@ -203,7 +204,7 @@ class InvertedLShape extends Shape {
   }
 }
 
-class ZShape extends Shape {
+export class ZShape extends Shape {
   bricks = [
     [
       CELL_TYPES.EMPTY,
@@ -231,7 +232,7 @@ class ZShape extends Shape {
   }
 }
 
-class InvertedZShape extends Shape {
+export class InvertedZShape extends Shape {
   bricks = [
     [
       CELL_TYPES.OCCUPIED,

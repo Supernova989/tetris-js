@@ -1,5 +1,6 @@
 import {cloneDeep} from "lodash";
-
+import {LineShape, SquareShape, ZShape, InvertedZShape, TShape, LShape, InvertedLShape, Shape} from "../models/shapes";
+import { CELL_TYPES, toPx } from "./shared";
 
 interface SceneProps {
   root_id: string,
@@ -117,8 +118,8 @@ class Scene {
     if (!this.activeShape) {
       return;
     }
-    switch (e.key.toLowerCase()) {
-      case "w": {
+    switch (e.code) {
+      case "KeyW": {
         const tmp = this.activeShape.revolve(false);
   
         let tmpW = 0;
@@ -144,7 +145,7 @@ class Scene {
         this.activeShape.revolve(true);
         break;
       }
-      case "a": {
+      case "KeyA": {
         newPositionX = this.activeShape.getX() - 1;
         newPositionY = this.activeShape.getY();
         
@@ -167,7 +168,7 @@ class Scene {
         break;
       }
       
-      case "s": {
+      case "KeyS": {
         newPositionX = this.activeShape.getX();
         newPositionY = this.activeShape.getY() + 1;
         if (newPositionY + this.activeShape.getHeight() > this.scene_height - 1) {
@@ -188,7 +189,7 @@ class Scene {
         break;
       }
       
-      case "d": {
+      case "KeyD": {
         newPositionX = this.activeShape.getX() + 1;
         newPositionY = this.activeShape.getY();
         
