@@ -26,35 +26,119 @@
 		  position: relative;
 	  }
 	  
+	  .preview-field {
+		  display: flex;
+		  align-items: center;
+		  justify-content: center;
+		  position: relative;
+		  margin-bottom: 50px;
+	  }
+	  
+	  .preview-field .wrap {
+		  position: relative;
+	  }
+	  
 	  .cell {
 		  position: absolute;
 		  -webkit-appearance: none;
 		  -moz-appearance: none;
 		  appearance: none;
-        border: 1px solid lightgray;
+		  border: 1px solid lightgray;
 	  }
 	  
 	  .cell.empty {
-		 background: antiquewhite;
+		  background: antiquewhite;
 	  }
 	  
 	  .cell.occupied {
 		  background: green;
 	  }
-    
-    #root {
-        margin: 100px 0 0 0;
-        display: flex;
-        justify-content: center;
-    }
+	  
+	  #root {
+		  margin: 100px 0 0 0;
+		  display: flex;
+		  justify-content: center;
+	  }
+	  
+	  .container {
+		  display: flex;
+		  background: lightgray;
+		  padding: 10px;
+	  }
+	  
+	  .sidebar {
+		  display: flex;
+		  min-width: 120px;
+		  margin-left: 10px;
+		  text-align: center;
+		  flex-direction: column;
+		  font-weight: bold;
+		  font-size: 120%;
+	  }
+	  
+	  .score {
+		  margin-top: 5px;
+	  }
+	  
+	  #gameover {
+		  position: fixed;
+		  display: flex;
+		  top: 0;
+		  left: 0;
+		  right: 0;
+		  bottom: 0;
+		  z-index: 100;
+		  justify-content: center;
+		  align-items: center;
+		  background: rgba(0, 0, 0, 0.3);
+	  }
+	  
+	  #gameover .text {
+		  padding: 20px 30px;
+		  background: antiquewhite;
+		  color: red;
+		  font-weight: bold;
+		  font-size: 250%;
+	  }
+	  
+	  .rules {
+		  color: rgba(0, 0, 0, 0.3);
+		  font-weight: bold;
+		  font-size: 180%;
+		  text-align: center;
+		  padding: 20px 20px;
+		  margin-top: 50px;
+	  }
+	  
+	  .audio {
+		  display: flex;
+		  justify-content: center;
+	  }
   </style>
 </head>
 <body>
 <div id="root"></div>
+<div class="rules">
+  Use W A S D as control keys.
+</div>
+<div class="audio">
+  <button id="music-button">Turn on music</button>
+</div>
 
 <script src="build/bundle.min.js"></script>
-<audio autoplay id="music">
+<audio loop preload id="music">
   <source type="audio/mp3" src="music.mp3">
 </audio>
+<script>
+  window.music_on = false;
+  const music_button = document.getElementById("music-button");
+  music_button.addEventListener("click", () => {
+    window.music_on = !window.music_on;
+    music_button.innerText = window.music_on ? "Turn off music" : "Turn on music";
+    document.getElementById("music")[window.music_on ? "play" : "pause"]();
+  });
+
+  setTimeout(() => document.getElementById("music").play(), 1000);
+</script>
 </body>
 </html>
