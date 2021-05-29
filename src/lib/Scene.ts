@@ -311,12 +311,12 @@ class Scene {
     
     this.handleControl = this.handleControl.bind(this);
     this.downshift = this.downshift.bind(this);
-    this.renderCells = this.renderCells.bind(this);
+    this.render = this.render.bind(this);
     
     
     this.init();
     
-    this.renderInterval = setInterval(() => this.renderCells(this.activeShape), 35);
+    this.renderInterval = setInterval(() => this.render(this.activeShape), 35);
     
   }
   
@@ -390,10 +390,28 @@ class Scene {
         this.activeShape.setX(newPositionX);
         break;
       }
+      
       case "s": {
-        
+        newPositionX = this.activeShape.getX();
+        newPositionY = this.activeShape.getY() + 1;
+        if (newPositionY + this.activeShape.getHeight() > this.scene_height - 1) {
+          return;
+        }
+        let brickCollision = false;
+        for (let y = 0; y < this.activeShape.getHeight(); y++) {
+          for (let x = 0; x < this.activeShape.getWidth(); x++) {
+            if (this.matrix[newPositionY + y][newPositionX + x] === CELL_TYPES.OCCUPIED) {
+              brickCollision = true;
+            }
+          }
+        }
+        if (brickCollision) {
+          return;
+        }
+        this.activeShape.setY(newPositionY);
         break;
       }
+      
       case "d": {
         newPositionX = this.activeShape.getX() + 1;
         newPositionY = this.activeShape.getY();
@@ -420,7 +438,6 @@ class Scene {
   }
   
   downshift() {
-    
     if (!this.activeShape) {
       this.activeShape = createShape(Math.floor(this.scene_width / 2 - 1), 0);
     }
@@ -466,6 +483,7 @@ class Scene {
       }
     }
     
+    
     this.activeShape.setY(this.activeShape.getY() + 1);
   }
   
@@ -483,7 +501,7 @@ class Scene {
     }
   }
   
-  renderCells(shape?: Shape) {
+  render(shape?: Shape) {
     this.field.innerHTML = "";
     for (let line = 0; line < this.scene_height; line++) {
       for (let cell = 0; cell < this.scene_width; cell++) {
