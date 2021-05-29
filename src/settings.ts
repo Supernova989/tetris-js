@@ -7,3 +7,4 @@ export const SETTINGS: IAppSettings = {
   scene_height: 24,
   
 } as const;
+
